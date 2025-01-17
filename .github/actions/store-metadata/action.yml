@@ -1,0 +1,33 @@
+name: "Store Metadata in MongoDB"
+description: "Extract metadata and store it in MongoDB"
+inputs:
+  target_directory:
+    description: "The directory containing the code to process"
+    required: true
+    default: "/github/workspace"
+  ACTION:
+    description: "Flag to indicate if running locally"
+    required: false
+    default: "false"
+  MONGO_URI:
+    description: "MongoDB connection string"
+    required: false
+    default: ""
+  DATABASE_NAME:
+    description: "Name of the database"
+    required: false
+    default: ""
+  CURRENT_COLLECTION_NAME:
+    description: "Name of the collection"
+    required: false
+    default: ""
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    ACTION: ${{ inputs.ACTION }}
+    MONGO_URI: ${{ inputs.MONGO_URI }}
+    DATABASE_NAME: ${{ inputs.DATABASE_NAME }}
+    CURRENT_COLLECTION_NAME: ${{ inputs.CURRENT_COLLECTION_NAME }}
+  args:
+    - "${{ inputs.target_directory }}"

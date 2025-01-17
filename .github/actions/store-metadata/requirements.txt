@@ -1,0 +1,6 @@
+pymongo
+loguru
+gitpython
+bashlex
+python-dotenv
+PyYAML
